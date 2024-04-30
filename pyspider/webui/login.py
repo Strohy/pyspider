@@ -6,6 +6,7 @@
 # Created on 2014-12-10 20:36:27
 
 import base64
+import hmac
 from flask import Response
 try:
     import flask_login as login
