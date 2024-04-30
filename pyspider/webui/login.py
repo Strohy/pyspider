@@ -41,8 +41,8 @@ class User(login.UserMixin):
     def is_authenticated(self):
         if not app.config.get('webui_username'):
             return True
-        if self.id == app.config.get('webui_username') \
-                and self.password == app.config.get('webui_password'):
+        if hmac.compare_digest(self.id.encode('utf-8'), app.config.get('webui_username').encode('utf-8')) \
+                and hmac.compare_digest(self.password.encode('utf-8'), app.config.get('webui_password').encode('utf-8')):
             return True
         return False
 
